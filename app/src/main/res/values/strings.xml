@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">FitLog</string>
+
+    <!-- Auth Screen -->
+    <string name="tab_sign_in">Entrar</string>
+    <string name="tab_sign_up">Cadastrar</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Senha</string>
+    <string name="btn_sign_in">Entrar</string>
+    <string name="btn_sign_up">Cadastrar</string>
+
+    <!-- Home Screen -->
+    <string name="title_fitlog">FitLog</string>
+    <string name="cd_logout">Sair</string>
+    <string name="cd_ai_suggest">Sugestão IA</string>
+    <string name="cd_new_workout">Novo Treino</string>
+    <string name="empty_workouts_title">Nenhum treino ainda</string>
+    <string name="empty_workouts_subtitle">Vamos começar!</string>
+    <string name="btn_start_workout">Começar treino</string>
+    <string name="exercises_count">%d exercícios</string>
+    <string name="delete_workout_title">Excluir treino</string>
+    <string name="delete_workout_message">Deseja excluir este treino?</string>
+    <string name="btn_confirm">Confirmar</string>
+    <string name="btn_cancel">Cancelar</string>
+
+    <!-- Create/Edit Workout -->
+    <string name="title_new_workout">Novo Treino</string>
+    <string name="title_edit_workout">Editar Treino</string>
+    <string name="label_workout_name">Nome do treino</string>
+    <string name="label_workout_date">Data</string>
+    <string name="label_notes">Observações</string>
+    <string name="section_exercises">Exercícios</string>
+    <string name="btn_add_exercise">+ Adicionar Exercício</string>
+    <string name="btn_save">Salvar</string>
+    <string name="cd_back">Voltar</string>
+    <string name="cd_save">Salvar</string>
+
+    <!-- Exercise Form -->
+    <string name="label_exercise_name">Nome do exercício</string>
+    <string name="label_sets">Séries</string>
+    <string name="label_reps">Repetições</string>
+    <string name="label_weight_kg">Peso (kg)</string>
+    <string name="cd_remove_exercise">Remover exercício</string>
+
+    <!-- Workout Detail -->
+    <string name="cd_edit_workout">Editar treino</string>
+    <string name="cd_delete_workout">Excluir treino</string>
+
+    <!-- AI Suggest Screen -->
+    <string name="title_ai_suggest">Sugestão com IA</string>
+    <string name="subtitle_ai_suggest">Descreva seu objetivo e gere um treino personalizado</string>
+    <string name="hint_ai_prompt">Ex: treino de hipertrofia para iniciantes focado em peito e costas, 3 dias por semana</string>
+    <string name="btn_generate">Gerar Treino</string>
+    <string name="btn_use_workout">Usar este treino</string>
+    <string name="cd_copy">Copiar resposta</string>
+    <string name="chip_beginner_full_body">Iniciante · Corpo inteiro</string>
+    <string name="chip_advanced_legs">Avançado · Pernas</string>
+    <string name="chip_cardio_core">Cardio + Core</string>
+    <string name="chip_fat_loss">Emagrecimento</string>
+</resources>
