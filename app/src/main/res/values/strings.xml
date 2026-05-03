@@ -8,29 +8,33 @@
     <string name="label_password">Senha</string>
     <string name="btn_sign_in">Entrar</string>
     <string name="btn_sign_up">Cadastrar</string>
+    <string name="label_or">ou</string>
+    <string name="btn_sign_in_google">Continuar com Google</string>
 
     <!-- Home Screen -->
     <string name="title_fitlog">FitLog</string>
     <string name="cd_logout">Sair</string>
     <string name="cd_ai_suggest">Sugestão IA</string>
     <string name="cd_new_workout">Novo Treino</string>
-    <string name="empty_workouts_title">Nenhum treino ainda</string>
-    <string name="empty_workouts_subtitle">Vamos começar!</string>
-    <string name="btn_start_workout">Começar treino</string>
-    <string name="exercises_count">%d exercícios</string>
-    <string name="delete_workout_title">Excluir treino</string>
-    <string name="delete_workout_message">Deseja excluir este treino?</string>
-    <string name="btn_confirm">Confirmar</string>
-    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_start_session">Iniciar Treino</string>
+    <string name="btn_manage_workouts">Gerenciar Treinos</string>
+    <string name="section_history">Histórico de Sessões</string>
+    <string name="history_placeholder">Histórico de sessões em breve</string>
 
-    <!-- Create/Edit Workout -->
+    <!-- Manage Workouts -->
+    <string name="title_manage_workouts">Meus Treinos</string>
+    <string name="empty_templates_title">Nenhum treino cadastrado</string>
+    <string name="empty_templates_subtitle">Crie seu primeiro template de treino</string>
+    <string name="btn_create_template">Criar Treino</string>
+
+    <!-- Create Template -->
     <string name="title_new_workout">Novo Treino</string>
     <string name="title_edit_workout">Editar Treino</string>
     <string name="label_workout_name">Nome do treino</string>
-    <string name="label_workout_date">Data</string>
-    <string name="label_notes">Observações</string>
     <string name="section_exercises">Exercícios</string>
     <string name="btn_add_exercise">+ Adicionar Exercício</string>
+    <string name="btn_remove_exercise">− Remover</string>
+    <string name="exercise_number">Exercício %d</string>
     <string name="btn_save">Salvar</string>
     <string name="cd_back">Voltar</string>
     <string name="cd_save">Salvar</string>
@@ -42,9 +46,30 @@
     <string name="label_weight_kg">Peso (kg)</string>
     <string name="cd_remove_exercise">Remover exercício</string>
 
+    <!-- Start Session -->
+    <string name="title_start_session">Iniciar Treino</string>
+    <string name="label_next_workout_suggestion">Próximo treino sugerido:</string>
+    <string name="label_select_workout">Selecionar treino</string>
+    <string name="hint_select_workout">Escolha um treino</string>
+    <string name="btn_begin_session">▶ Começar</string>
+
+    <!-- Active Session -->
+    <string name="btn_finish_session">Finalizar</string>
+    <string name="sets_reps_format">%1$d séries × %2$d reps</string>
+    <string name="label_record_weight">Maior: %.1fkg</string>
+    <string name="label_last_weight">Último: %.1fkg</string>
+    <string name="cd_new_record">Novo recorde!</string>
+
     <!-- Workout Detail -->
     <string name="cd_edit_workout">Editar treino</string>
     <string name="cd_delete_workout">Excluir treino</string>
+    <string name="exercises_count">%d exercícios</string>
+
+    <!-- Delete Dialog -->
+    <string name="delete_workout_title">Excluir treino</string>
+    <string name="delete_workout_message">Deseja excluir este treino?</string>
+    <string name="btn_confirm">Confirmar</string>
+    <string name="btn_cancel">Cancelar</string>
 
     <!-- AI Suggest Screen -->
     <string name="title_ai_suggest">Sugestão com IA</string>
@@ -57,4 +82,11 @@
     <string name="chip_advanced_legs">Avançado · Pernas</string>
     <string name="chip_cardio_core">Cardio + Core</string>
     <string name="chip_fat_loss">Emagrecimento</string>
+
+    <!-- Workout date label (used in WorkoutCard) -->
+    <string name="label_workout_date">Data</string>
+    <string name="label_notes">Observações</string>
+    <string name="empty_workouts_title">Nenhum treino ainda</string>
+    <string name="empty_workouts_subtitle">Vamos começar!</string>
+    <string name="btn_start_workout">Começar treino</string>
 </resources>

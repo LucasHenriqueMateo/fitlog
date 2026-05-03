@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.fitlog.app.data.repository.WorkoutRepository
 import com.fitlog.app.domain.model.Exercise
 import com.fitlog.app.domain.model.Workout
-import com.fitlog.app.navigation.Screen
 import com.fitlog.app.util.DateUtils
 import com.fitlog.app.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,8 +48,8 @@ class CreateWorkoutViewModel @Inject constructor(
     val uiState: StateFlow<CreateWorkoutUiState> = _uiState.asStateFlow()
 
     init {
-        val workoutId = savedStateHandle.get<String>(Screen.CreateWorkout.ARG_WORKOUT_ID)
-        val aiSuggestion = savedStateHandle.get<String>(Screen.CreateWorkout.ARG_AI_SUGGESTION)
+        val workoutId = savedStateHandle.get<String>("workoutId")
+        val aiSuggestion = savedStateHandle.get<String>("aiSuggestion")
 
         if (!workoutId.isNullOrBlank()) {
             loadWorkout(workoutId)

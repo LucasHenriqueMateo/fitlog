@@ -57,6 +57,17 @@ Resumo:
 - Sincronização offline-first
 - Sugestões de treino personalizadas via Claude (Anthropic API)
 
+## Populando os treinos (seed)
+
+1. Abra o app e faça login/cadastro
+2. Acesse **Authentication → Users** no Supabase e copie seu UUID
+3. Abra o arquivo `supabase/seed.sql` e substitua `'SEU_USER_ID'` pelo UUID copiado
+4. Cole o conteúdo no **SQL Editor** do Supabase e execute
+5. Reabra o app — os treinos aparecerão automaticamente no dropdown de "Iniciar Treino"
+
+> Antes do seed, execute também o conteúdo de `supabase/schema.sql` para garantir que
+> as tabelas `workout_sessions`, `session_exercises` e a coluna `is_template` existam.
+
 ## Limitações conhecidas
 
 - Chave da Anthropic exposta no cliente (aceitável para protótipo; em produção use Edge Function)

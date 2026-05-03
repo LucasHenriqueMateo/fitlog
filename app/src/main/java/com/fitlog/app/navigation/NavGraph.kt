@@ -9,8 +9,11 @@ import androidx.navigation.navArgument
 import com.fitlog.app.ui.ai.AiSuggestScreen
 import com.fitlog.app.ui.auth.AuthScreen
 import com.fitlog.app.ui.home.HomeScreen
-import com.fitlog.app.ui.workout.create.CreateWorkoutScreen
+import com.fitlog.app.ui.session.ActiveSessionScreen
+import com.fitlog.app.ui.session.StartSessionScreen
 import com.fitlog.app.ui.workout.detail.WorkoutDetailScreen
+import com.fitlog.app.ui.workout.manage.ManageWorkoutsScreen
+import com.fitlog.app.ui.workout.template.CreateTemplateScreen
 
 @Composable
 fun NavGraph(
@@ -30,8 +33,8 @@ fun NavGraph(
 
         composable(Screen.Home.route) {
             HomeScreen(
-                onNewWorkout = { navController.navigate(Screen.CreateWorkout.createRoute()) },
-                onWorkoutClick = { id -> navController.navigate(Screen.WorkoutDetail.createRoute(id)) },
+                onStartWorkout = { navController.navigate(Screen.StartSession.route) },
+                onManageWorkouts = { navController.navigate(Screen.ManageWorkouts.route) },
                 onAiSuggest = { navController.navigate(Screen.AiSuggest.route) },
                 onLogout = {
                     navController.navigate(Screen.Auth.route) {
@@ -41,28 +44,53 @@ fun NavGraph(
             )
         }
 
+        composable(Screen.ManageWorkouts.route) {
+            ManageWorkoutsScreen(
+                onBack = { navController.popBackStack() },
+                onCreateTemplate = { navController.navigate(Screen.CreateTemplate.createRoute()) },
+                onEditTemplate = { id -> navController.navigate(Screen.CreateTemplate.createRoute(id)) }
+            )
+        }
+
         composable(
-            route = Screen.CreateWorkout.routeWithArgs,
+            route = Screen.CreateTemplate.routeWithArgs,
             arguments = listOf(
-                navArgument(Screen.CreateWorkout.ARG_WORKOUT_ID) {
-                    type = NavType.StringType
-                    nullable = true
-                    defaultValue = null
-                },
-                navArgument(Screen.CreateWorkout.ARG_AI_SUGGESTION) {
+                navArgument(Screen.CreateTemplate.ARG_ID) {
                     type = NavType.StringType
                     nullable = true
                     defaultValue = null
                 }
             )
         ) { backStackEntry ->
-            val workoutId = backStackEntry.arguments?.getString(Screen.CreateWorkout.ARG_WORKOUT_ID)
-            val aiSuggestion = backStackEntry.arguments?.getString(Screen.CreateWorkout.ARG_AI_SUGGESTION)
-            CreateWorkoutScreen(
-                workoutId = workoutId,
-                aiSuggestion = aiSuggestion,
+            val templateId = backStackEntry.arguments?.getString(Screen.CreateTemplate.ARG_ID)
+            CreateTemplateScreen(
+                templateId = templateId,
                 onBack = { navController.popBackStack() },
                 onSaved = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.StartSession.route) {
+            StartSessionScreen(
+                onBack = { navController.popBackStack() },
+                onStartSession = { workoutId ->
+                    navController.navigate(Screen.ActiveSession.createRoute(workoutId))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.ActiveSession.route,
+            arguments = listOf(
+                navArgument("workoutId") { type = NavType.StringType }
+            )
+        ) {
+            ActiveSessionScreen(
+                onFinished = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Home.route) { inclusive = true }
+                    }
+                }
             )
         }
 
@@ -76,7 +104,7 @@ fun NavGraph(
             WorkoutDetailScreen(
                 workoutId = workoutId,
                 onBack = { navController.popBackStack() },
-                onEdit = { id -> navController.navigate(Screen.CreateWorkout.createRoute(workoutId = id)) },
+                onEdit = { id -> navController.navigate(Screen.CreateTemplate.createRoute(id)) },
                 onDeleted = { navController.popBackStack() }
             )
         }
@@ -84,8 +112,8 @@ fun NavGraph(
         composable(Screen.AiSuggest.route) {
             AiSuggestScreen(
                 onBack = { navController.popBackStack() },
-                onUseWorkout = { aiText ->
-                    navController.navigate(Screen.CreateWorkout.createRoute(aiSuggestion = aiText))
+                onUseWorkout = { _ ->
+                    navController.navigate(Screen.CreateTemplate.createRoute())
                 }
             )
         }

@@ -1,6 +1,7 @@
 package com.fitlog.app.di
 
 import com.fitlog.app.data.remote.datasource.AuthRemoteDataSource
+import com.fitlog.app.data.remote.datasource.SessionRemoteDataSource
 import com.fitlog.app.data.remote.datasource.WorkoutRemoteDataSource
 import com.fitlog.app.data.repository.AuthRepository
 import com.fitlog.app.data.repository.WorkoutRepository
@@ -36,5 +37,10 @@ abstract class NetworkModule {
         @Singleton
         fun provideAuthRepository(authRemoteDataSource: AuthRemoteDataSource): AuthRepository =
             AuthRepository(authRemoteDataSource)
+
+        @Provides
+        @Singleton
+        fun provideSessionRemoteDataSource(client: SupabaseClient): SessionRemoteDataSource =
+            SessionRemoteDataSource(client)
     }
 }

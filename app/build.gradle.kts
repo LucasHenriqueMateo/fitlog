@@ -28,6 +28,8 @@ android {
         buildConfigField("String", "SUPABASE_URL", "\"${localProps["SUPABASE_URL"]}\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"${localProps["SUPABASE_ANON_KEY"]}\"")
         buildConfigField("String", "ANTHROPIC_API_KEY", "\"${localProps["ANTHROPIC_API_KEY"]}\"")
+        buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${localProps["GOOGLE_WEB_CLIENT_ID"] ?: ""}\"")
+
     }
 
     buildTypes {
@@ -109,6 +111,11 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.7.0")
+
+    // Google Credential Manager (for native Google Sign-In)
+    implementation("androidx.credentials:credentials:1.3.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
     // Testing
     testImplementation(libs.junit)

@@ -1,24 +1,21 @@
 package com.fitlog.app.navigation
 
-import android.net.Uri
-
 sealed class Screen(val route: String) {
     data object Auth : Screen("auth")
     data object Home : Screen("home")
     data object AiSuggest : Screen("ai_suggest")
+    data object ManageWorkouts : Screen("manage_workouts")
+    data object StartSession : Screen("start_session")
 
-    data object CreateWorkout : Screen("create_workout") {
-        const val ARG_WORKOUT_ID = "workoutId"
-        const val ARG_AI_SUGGESTION = "aiSuggestion"
-        val routeWithArgs = "create_workout?$ARG_WORKOUT_ID={$ARG_WORKOUT_ID}&$ARG_AI_SUGGESTION={$ARG_AI_SUGGESTION}"
+    data object CreateTemplate : Screen("create_template") {
+        const val ARG_ID = "id"
+        val routeWithArgs = "create_template?$ARG_ID={$ARG_ID}"
+        fun createRoute(id: String? = null) =
+            if (id != null) "create_template?$ARG_ID=$id" else "create_template"
+    }
 
-        fun createRoute(workoutId: String? = null, aiSuggestion: String? = null): String {
-            val params = buildList {
-                workoutId?.let { add("$ARG_WORKOUT_ID=${Uri.encode(it)}") }
-                aiSuggestion?.let { add("$ARG_AI_SUGGESTION=${Uri.encode(it)}") }
-            }
-            return if (params.isEmpty()) route else "$route?${params.joinToString("&")}"
-        }
+    data object ActiveSession : Screen("active_session/{workoutId}") {
+        fun createRoute(id: String) = "active_session/$id"
     }
 
     data object WorkoutDetail : Screen("workout_detail/{workoutId}") {

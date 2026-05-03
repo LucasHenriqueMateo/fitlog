@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.fitlog.app.data.local.FitLogDatabase
 import com.fitlog.app.data.local.dao.ExerciseDao
+import com.fitlog.app.data.local.dao.SessionDao
+import com.fitlog.app.data.local.dao.SessionExerciseDao
 import com.fitlog.app.data.local.dao.WorkoutDao
 import dagger.Module
 import dagger.Provides
@@ -23,7 +25,9 @@ object DatabaseModule {
             context,
             FitLogDatabase::class.java,
             "fitlog.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     @Singleton
@@ -32,4 +36,12 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideExerciseDao(db: FitLogDatabase): ExerciseDao = db.exerciseDao()
+
+    @Provides
+    @Singleton
+    fun provideSessionDao(db: FitLogDatabase): SessionDao = db.sessionDao()
+
+    @Provides
+    @Singleton
+    fun provideSessionExerciseDao(db: FitLogDatabase): SessionExerciseDao = db.sessionExerciseDao()
 }
