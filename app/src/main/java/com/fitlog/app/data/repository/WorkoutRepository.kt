@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface WorkoutRepository {
     fun getWorkouts(): Flow<List<Workout>>
+    fun getTemplates(): Flow<List<Workout>>
+    fun getSessions(): Flow<List<Workout>>
     suspend fun getWorkoutById(id: String): Workout?
     suspend fun saveWorkout(workout: Workout): Result<Workout>
     suspend fun deleteWorkout(id: String): Result<Unit>

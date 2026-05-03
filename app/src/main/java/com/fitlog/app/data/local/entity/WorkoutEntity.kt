@@ -12,7 +12,8 @@ data class WorkoutEntity(
     val date: String,
     val notes: String,
     val synced: Boolean = false,
-    val createdAt: String
+    val createdAt: String,
+    val isTemplate: Boolean = false
 )
 
 fun WorkoutEntity.toDomain(exercises: List<com.fitlog.app.domain.model.Exercise> = emptyList()) = Workout(
@@ -22,5 +23,6 @@ fun WorkoutEntity.toDomain(exercises: List<com.fitlog.app.domain.model.Exercise>
     date = date,
     notes = notes,
     exercises = exercises,
-    createdAt = createdAt
+    createdAt = createdAt,
+    isTemplate = isTemplate
 )

@@ -48,6 +48,30 @@ class WorkoutRepositoryImpl @Inject constructor(
             .collect { send(it) }
     }
 
+    override fun getTemplates(): Flow<List<Workout>> = channelFlow {
+        launch {
+            try {
+                val userId = supabaseClient.auth.currentUserOrNull()?.id ?: return@launch
+                val remoteTemplates = remoteDataSource.fetchTemplates(userId)
+                remoteTemplates.forEach { dto ->
+                    workoutDao.insert(dto.toEntity())
+                    val exercises = remoteDataSource.fetchExercisesForWorkout(dto.id)
+                    exerciseDao.deleteByWorkoutId(dto.id)
+                    exercises.forEach { exerciseDao.insert(it.toEntity()) }
+                }
+            } catch (e: Exception) {
+                // Offline
+            }
+        }
+        workoutDao.getTemplatesWithExercises()
+            .map { list -> list.map(WorkoutWithExercises::toDomain) }
+            .collect { send(it) }
+    }
+
+    override fun getSessions(): Flow<List<Workout>> =
+        workoutDao.getSessionWorkouts()
+            .map { list -> list.map(WorkoutWithExercises::toDomain) }
+
     override suspend fun getWorkoutById(id: String): Workout? =
         workoutDao.getByIdWithExercises(id)?.toDomain()
 
@@ -64,7 +88,8 @@ class WorkoutRepositoryImpl @Inject constructor(
                 date = workout.date,
                 notes = workout.notes,
                 synced = false,
-                createdAt = createdAt
+                createdAt = createdAt,
+                isTemplate = workout.isTemplate
             )
             workoutDao.insert(entity)
 
@@ -85,7 +110,6 @@ class WorkoutRepositoryImpl @Inject constructor(
                 )
             }
 
-            // Try remote sync
             try {
                 val workoutDto = WorkoutDto(
                     id = id,
@@ -93,7 +117,8 @@ class WorkoutRepositoryImpl @Inject constructor(
                     name = workout.name,
                     date = workout.date,
                     notes = workout.notes,
-                    createdAt = createdAt
+                    createdAt = createdAt,
+                    isTemplate = workout.isTemplate
                 )
                 remoteDataSource.upsertWorkout(workoutDto)
 

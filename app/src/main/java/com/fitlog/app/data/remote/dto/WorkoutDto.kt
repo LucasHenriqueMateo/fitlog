@@ -11,7 +11,8 @@ data class WorkoutDto(
     val name: String = "",
     val date: String = "",
     val notes: String = "",
-    @SerialName("created_at") val createdAt: String? = null
+    @SerialName("created_at") val createdAt: String? = null,
+    @SerialName("is_template") val isTemplate: Boolean = false
 )
 
 fun WorkoutDto.toEntity() = WorkoutEntity(
@@ -21,5 +22,6 @@ fun WorkoutDto.toEntity() = WorkoutEntity(
     date = date,
     notes = notes,
     synced = true,
-    createdAt = createdAt ?: ""
+    createdAt = createdAt ?: "",
+    isTemplate = isTemplate
 )

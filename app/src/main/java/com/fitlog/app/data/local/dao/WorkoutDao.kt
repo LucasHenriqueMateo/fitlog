@@ -39,4 +39,15 @@ interface WorkoutDao {
     @Transaction
     @Query("SELECT * FROM workouts WHERE id = :id")
     suspend fun getByIdWithExercises(id: String): WorkoutWithExercises?
+
+    @Query("SELECT * FROM workouts WHERE isTemplate = 1 ORDER BY name ASC")
+    fun getTemplates(): Flow<List<WorkoutEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM workouts WHERE isTemplate = 1 ORDER BY name ASC")
+    fun getTemplatesWithExercises(): Flow<List<WorkoutWithExercises>>
+
+    @Transaction
+    @Query("SELECT * FROM workouts WHERE isTemplate = 0 ORDER BY date DESC")
+    fun getSessionWorkouts(): Flow<List<WorkoutWithExercises>>
 }

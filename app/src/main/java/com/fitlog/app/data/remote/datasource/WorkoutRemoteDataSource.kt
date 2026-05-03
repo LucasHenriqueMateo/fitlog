@@ -36,4 +36,12 @@ class WorkoutRemoteDataSource @Inject constructor(
     suspend fun deleteExercisesForWorkout(workoutId: String) {
         client.from("exercises").delete { filter { eq("workout_id", workoutId) } }
     }
+
+    suspend fun fetchTemplates(userId: String): List<WorkoutDto> =
+        client.from("workouts")
+            .select { filter {
+                eq("user_id", userId)
+                eq("is_template", true)
+            } }
+            .decodeList()
 }
