@@ -3,6 +3,7 @@ package com.fitlog.app.navigation
 import android.net.Uri
 
 sealed class Screen(val route: String) {
+    data object Splash : Screen("splash")
     data object Auth : Screen("auth")
     data object Home : Screen("home")
     data object AiSuggest : Screen("ai_suggest")

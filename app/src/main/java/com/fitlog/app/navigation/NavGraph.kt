@@ -13,16 +13,30 @@ import com.fitlog.app.ui.history.HistoryScreen
 import com.fitlog.app.ui.home.HomeScreen
 import com.fitlog.app.ui.session.ActiveSessionScreen
 import com.fitlog.app.ui.session.StartSessionScreen
+import com.fitlog.app.ui.splash.SplashScreen
 import com.fitlog.app.ui.workout.detail.WorkoutDetailScreen
 import com.fitlog.app.ui.workout.manage.ManageWorkoutsScreen
 import com.fitlog.app.ui.workout.template.CreateTemplateScreen
 
 @Composable
-fun NavGraph(
-    navController: NavHostController,
-    startDestination: String
-) {
-    NavHost(navController = navController, startDestination = startDestination) {
+fun NavGraph(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+
+        composable(Screen.Splash.route) {
+            SplashScreen(
+                onNavigateToHome = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Splash.route) { inclusive = true }
+                    }
+                },
+                onNavigateToAuth = {
+                    navController.navigate(Screen.Auth.route) {
+                        popUpTo(Screen.Splash.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable(Screen.Auth.route) {
             AuthScreen(
                 onLoginSuccess = {
