@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
@@ -36,6 +37,7 @@ import com.fitlog.app.R
 fun HomeScreen(
     onStartWorkout: () -> Unit,
     onManageWorkouts: () -> Unit,
+    onHistory: () -> Unit,
     onAiSuggest: () -> Unit,
     onLogout: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
@@ -67,21 +69,22 @@ fun HomeScreen(
                 .padding(padding)
                 .padding(16.dp)
         ) {
+            Button(
+                onClick = onStartWorkout,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(
+                    Icons.Filled.PlayArrow,
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = 6.dp)
+                )
+                Text(stringResource(R.string.btn_start_session))
+            }
+            Spacer(Modifier.height(8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Button(
-                    onClick = onStartWorkout,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Icon(
-                        Icons.Filled.PlayArrow,
-                        contentDescription = null,
-                        modifier = Modifier.padding(end = 6.dp)
-                    )
-                    Text(stringResource(R.string.btn_start_session))
-                }
                 OutlinedButton(
                     onClick = onManageWorkouts,
                     modifier = Modifier.weight(1f)
@@ -92,6 +95,17 @@ fun HomeScreen(
                         modifier = Modifier.padding(end = 6.dp)
                     )
                     Text(stringResource(R.string.btn_manage_workouts))
+                }
+                OutlinedButton(
+                    onClick = onHistory,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        Icons.Filled.BarChart,
+                        contentDescription = null,
+                        modifier = Modifier.padding(end = 6.dp)
+                    )
+                    Text(stringResource(R.string.btn_history))
                 }
             }
 

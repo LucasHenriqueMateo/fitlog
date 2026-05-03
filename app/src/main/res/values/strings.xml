@@ -18,6 +18,7 @@
     <string name="cd_new_workout">Novo Treino</string>
     <string name="btn_start_session">Iniciar Treino</string>
     <string name="btn_manage_workouts">Gerenciar Treinos</string>
+    <string name="btn_history">Histórico</string>
     <string name="section_history">Histórico de Sessões</string>
     <string name="history_placeholder">Histórico de sessões em breve</string>
 
@@ -82,6 +83,16 @@
     <string name="chip_advanced_legs">Avançado · Pernas</string>
     <string name="chip_cardio_core">Cardio + Core</string>
     <string name="chip_fat_loss">Emagrecimento</string>
+
+    <!-- History Screen -->
+    <string name="title_history">Histórico</string>
+    <string name="section_summary">Resumo</string>
+    <string name="section_last_session">Último treino</string>
+    <string name="chart_placeholder">Registre mais sessões para ver a evolução</string>
+    <string name="card_total_sessions">Total de treinos</string>
+    <string name="card_streak">Sequência atual</string>
+    <string name="card_last_session">Último treino</string>
+    <string name="card_prs_month">PRs este mês</string>
 
     <!-- Workout date label (used in WorkoutCard) -->
     <string name="label_workout_date">Data</string>

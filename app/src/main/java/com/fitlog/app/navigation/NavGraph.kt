@@ -8,6 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.fitlog.app.ui.ai.AiSuggestScreen
 import com.fitlog.app.ui.auth.AuthScreen
+import com.fitlog.app.ui.history.ExerciseHistoryScreen
+import com.fitlog.app.ui.history.HistoryScreen
 import com.fitlog.app.ui.home.HomeScreen
 import com.fitlog.app.ui.session.ActiveSessionScreen
 import com.fitlog.app.ui.session.StartSessionScreen
@@ -35,6 +37,7 @@ fun NavGraph(
             HomeScreen(
                 onStartWorkout = { navController.navigate(Screen.StartSession.route) },
                 onManageWorkouts = { navController.navigate(Screen.ManageWorkouts.route) },
+                onHistory = { navController.navigate(Screen.History.route) },
                 onAiSuggest = { navController.navigate(Screen.AiSuggest.route) },
                 onLogout = {
                     navController.navigate(Screen.Auth.route) {
@@ -115,6 +118,26 @@ fun NavGraph(
                 onUseWorkout = { _ ->
                     navController.navigate(Screen.CreateTemplate.createRoute())
                 }
+            )
+        }
+
+        composable(Screen.History.route) {
+            HistoryScreen(
+                onBack = { navController.popBackStack() },
+                onExerciseClick = { name ->
+                    navController.navigate(Screen.ExerciseHistory.createRoute(name))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.ExerciseHistory.route,
+            arguments = listOf(
+                navArgument("exerciseName") { type = NavType.StringType }
+            )
+        ) {
+            ExerciseHistoryScreen(
+                onBack = { navController.popBackStack() }
             )
         }
     }
